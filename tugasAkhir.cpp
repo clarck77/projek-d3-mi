@@ -101,7 +101,7 @@ void changePassword(int ch, string &password)
     {
       cout << "\b \b";
       password.pop_back(); 
-      ch = getch();
+      ch = getch(); // membaca karakter per karakter sehingga kata sandi tidak terlihat.
     }
     password.push_back(ch);
     cout << '*';
@@ -212,8 +212,8 @@ void login() // prosedur, farel
   cout << "| Username : ";
   cin >> username;
   cout << "| Password : ";
-  ch = getch();
-  changePassword (ch, password);
+  ch = getch(); // membaca karakter per karakter sehingga kata sandi tidak terlihat.
+  changePassword (ch, password); // menyimpan karakter variabel ke prosedure password dan mengubahnya ke bintang-bintang
   cout << "|===============================|" << endl;
 
   if (username == "adminkelompok3" && password == "admin0000")
