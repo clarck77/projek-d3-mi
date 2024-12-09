@@ -125,7 +125,7 @@ void menuKasir() // void, prosedure menu Kasir, Farel
   cin >> pilihan;
   cout << "|===============================|" << endl;
 
-  switch (pilihan) // penukaran
+  switch (pilihan) // penukaran atau switch case
   {
   case 1:
     transaksi();
