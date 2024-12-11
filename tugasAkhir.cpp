@@ -288,7 +288,7 @@ void updateDataBarang()
   login();
 
   cout << "Masukkan nama barang : ";
-  cin.getline(namaBarang, 50);
+  cin.getline(namaBarang, 50); // membaca seluruh baris input hingga newline baru dari nama barang dan panjang stringnya sebanyak [50]
   cout << "Masukkan harga barang : ";
   cin.getline(hargaBarang, 50);
   cout << "Masukkan satuan barang : ";
