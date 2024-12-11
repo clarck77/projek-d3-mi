@@ -188,13 +188,13 @@ void menuAdmin() // prosedur
   }
 }
 
-// untuk melakukan login
-void login() // prosedur, farida
+// untuk melakukan login.
+void login() // prosedur, farida. nama voidnya login.
 {
   int ch;
-  string username, password; // Makan_nasi "string"
+  string username, password;
 
-  system("cls");
+  system("cls"); // membersihkan layar ketika output berjalan.
   cout << "|===============================|" << endl;
   cout << "|             -LOGIN-           |" << endl;
   cout << "|           -Interface-         |" << endl;
@@ -213,7 +213,7 @@ void login() // prosedur, farida
   cin >> username;
   cout << "| Password : ";
   ch = getch(); // membaca karakter per karakter sehingga kata sandi tidak terlihat.
-  changePassword (ch, password); // menyimpan karakter variabel ke prosedure password dan mengubahnya ke bintang-bintang
+  changePassword (ch, password); // menyimpan karakter variabel ke prosedure password dan mengubahnya ke bintang-bintang.
   cout << "|===============================|" << endl;
 
   if (username == "adminkelompok3" && password == "admin0000")
