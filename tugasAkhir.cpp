@@ -188,7 +188,7 @@ void menuAdmin() // prosedur
   }
 }
 
-// untuk melakukan login.
+// Untuk melakukan login.
 void login() // prosedur, farida. nama voidnya login.
 {
   int ch;
