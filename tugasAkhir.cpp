@@ -177,7 +177,7 @@ void menuAdmin() // prosedur
     hapusDataBarang();
     break;
   case 5:
-    cin.ignore();
+    cin.ignore(); // Menghindari masalah karakter newline yang tertinggal
     login();
     break;
   default: // wajib ada
@@ -552,8 +552,8 @@ void transaksi()
     // memanggil function struk
     struk(jumlah_beli, bayar, kembalian, jumlah, total_harga);
     cout << "Klik enter untuk melanjutkan...";
-    cin.ignore();
-    cin.get();
+    cin.ignore(); // Menghindari masalah karakter newline yang tertinggal
+    cin.get(); //  menunggu pengguna menekan tombol Enter sebelum melanjutkan eksekusi program. 
   }
 }
 
