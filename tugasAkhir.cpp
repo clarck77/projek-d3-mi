@@ -69,7 +69,7 @@ int autoIncrementKodeBarang()
     // get last kode_barang dalam array barang
     if (barang[i][0] != "")
     {
-      kode_barang = stoi(barang[i][1]);
+      kode_barang = stoi(barang[i][1]); // Mengkonversi nilai string menjadi integer
     }
   }
   kode_barang = kode_barang + 1;
@@ -85,7 +85,7 @@ int autoIncrement()
   {
     if (barang[i][0] != "")
     {
-      nomor = stoi(barang[i][0]);
+      nomor = stoi(barang[i][0]); // Mengkonversi nilai string menjadi integer
     }
   }
 
@@ -284,7 +284,8 @@ void updateDataBarang()
   cin >> kode_barang;
 
   char namaBarang[50], hargaBarang[50], satuanBarang[50];
-  cin.ignore();
+  cin.ignore(); // // Menghindari masalah karakter newline yang tertinggal
+  login();
 
   cout << "Masukkan nama barang : ";
   cin.getline(namaBarang, 50);
@@ -312,7 +313,7 @@ void updateDataBarang()
     {
       if (barang[i][0] != "")
       {
-        if (stoi(barang[i][1]) == kode_barang)
+        if (stoi(barang[i][1]) == kode_barang) // Mengkonversi nilai string menjadi integer
         {
           kode_barang = stoi(barang[i][1]);
           nomor = stoi(barang[i][0]);
