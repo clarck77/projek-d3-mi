@@ -189,7 +189,7 @@ void menuAdmin() // prosedur
 }
 
 // untuk melakukan login
-void login() // prosedur, farel
+void login() // prosedur, farida
 {
   int ch;
   string username, password; // Makan_nasi "string"
