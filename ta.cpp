@@ -1,3 +1,11 @@
+/*Aplikasi Toko Kelontong Canggih, Kelompok 3 :
+- Amrullah Azzaky         (2407051027)
+- Zulfa Riana             (2407051006)
+- Mohamad Farrel Pratama  (2477051014)
+- Farida Agil Rahmadani   (2407051018)
+- Defina Rahmayanti       (2407051023)
+*/ 
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -21,6 +29,8 @@ vector<Barang> barang = {
     {"22005", "Telur_Ayam", "KG", 20000}
 };
 
+
+//void hanyaTampilkanData()
 void tampilDataBarang() {
     cout << "|=============================================|" << endl;
     cout << "| No | Kode  | Nama Barang   | Satuan | Harga |" << endl;
@@ -33,7 +43,9 @@ void tampilDataBarang() {
     }
     cout << "|===========================================|" << endl;
 }
+//void hanyaTampilkanData() - Selesai
 
+//void tambahDataBarang()
 void tambahDataBarang() {
     Barang baru;
     cout << "Masukkan Kode Barang: ";
@@ -51,7 +63,9 @@ void tambahDataBarang() {
     barang.push_back(baru);
     cout << "Barang berhasil ditambahkan!" << endl;
 }
+//void tambahDataBarang() - Selesai
 
+//void updateDataBarang()
 void updateDataBarang() {
     string kode;
     cout << "Masukkan Kode Barang yang akan diupdate: ";
@@ -74,7 +88,9 @@ void updateDataBarang() {
     }
     cout << "Barang tidak ditemukan!" << endl;
 }
+//void updateDataBarang () - Selesai
 
+//void hapusDataBarang()
 void hapusDataBarang() {
     string kode;
     cout << "Masukkan Kode Barang yang akan dihapus: ";
@@ -88,7 +104,9 @@ void hapusDataBarang() {
     }
     cout << "Barang tidak ditemukan!" << endl;
 }
+//void hapusDataBarang() - Selesai
 
+//void menuKasir()
 void menuAdmin(); // Deklarasi awal
 
 void menuKasir() {
@@ -173,7 +191,9 @@ void menuKasir() {
         }
     } while (pilihan != 4);
 }
+//void menuKasir() - Selesai
 
+//void menuAdmin()
 void menuAdmin() {
     int pilihan;
     do {
@@ -214,7 +234,9 @@ void menuAdmin() {
         }
     } while (pilihan != 6);
 }
+//void menuAdmin() - Selesai
 
+//void login()
 void login() {
     string username, password;
     system("cls"); // membersihkan layar ketika output berjalan.
@@ -243,6 +265,7 @@ void login() {
         login();
     }
 }
+//void login() - Selesai
 
 int main() {
     login();
