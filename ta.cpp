@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 #include <limits>
-#include <iomanip> // Untuk format output tabel
+#include <iomanip> 
 
 using namespace std;
 
@@ -16,7 +16,7 @@ struct Barang {
 vector<Barang> barang = {
     {"22001", "Beras_Bulog", "KG", 25000},
     {"22002", "Gula_Pasir", "KG", 5000},
-    {"22003", "Minyak_Goreng", "Liter", 15000},
+    {"22003", "Minyak", "Liter", 15000},
     {"22004", "Susu_Dancow", "Gram", 20000},
     {"22005", "Telur_Ayam", "KG", 20000}
 };
@@ -26,10 +26,10 @@ void tampilDataBarang() {
     cout << "| No | Kode  | Nama Barang   | Satuan | Harga |" << endl;
     cout << "|=============================================|" << endl;
     for (size_t i = 0; i < barang.size(); ++i) {
-        cout << "|    " << setw(2) << i + 1 << " | " << setw(6) << barang[i].kode
-             << "|    " << setw(12) << barang[i].nama
-             << "|    " << setw(6) << barang[i].satuan
-             << "|    " << setw(6) << barang[i].harga << "|    " << endl;
+        cout << "|" << setw(2) << i + 1 << " | " << setw(6) << barang[i].kode
+             << "|" << setw(12) << barang[i].nama
+             << "|" << setw(6) << barang[i].satuan
+             << "|" << setw(6) << barang[i].harga << "|" << endl;
     }
     cout << "|===========================================|" << endl;
 }
@@ -140,12 +140,12 @@ void menuKasir() {
         case 3: {
             int total = 0;
             cout << "\n|===========================================|" << endl;
-            cout << "| Nama Barang   | Jumlah | Harga  | Subtotal |" << endl;
-            cout << "|===========================================|" << endl;
+            cout << "| Nama Barang   | Jumlah | Harga  | Subtotal  |" << endl;
+            cout << "|=============================================|" << endl;
             for (const auto &item : keranjang) {
                 int subtotal = item.first.harga * item.second;
                 total += subtotal;
-                cout << "| " << setw(12) << item.first.nama
+                cout << " | " << setw(12) << item.first.nama
                      << " | " << setw(6) << item.second
                      << " | " << setw(6) << item.first.harga
                      << " | " << setw(8) << subtotal << " |" << endl;
