@@ -1,15 +1,8 @@
-/*Aplikasi Toko Kelontong Canggih, Kelompok 3 :
-- Amrullah Azzaky         (2407051027)
-- Zulfa Riana             (2407051006)
-- Mohamad Farrel Pratama  (2477051014)
-- Farida Agil Rahmadani   (2407051018)
-- Defina Rahmayanti       (2407051023)
-*/ 
-
 #include <iostream>
 #include <vector>
 #include <string>
-#include <limits> 
+#include <limits>
+#include <iomanip> // Untuk format output tabel
 
 using namespace std;
 
@@ -33,8 +26,10 @@ void tampilDataBarang() {
     cout << "| No | Kode  | Nama Barang   | Satuan | Harga |" << endl;
     cout << "|=============================================|" << endl;
     for (size_t i = 0; i < barang.size(); ++i) {
-        cout << "| " << i + 1 << "  | " << barang[i].kode << " | " << barang[i].nama << " | "
-             << barang[i].satuan << "   | " << barang[i].harga << " |" << endl;
+        cout << "|    " << setw(2) << i + 1 << " | " << setw(6) << barang[i].kode
+             << "|    " << setw(12) << barang[i].nama
+             << "|    " << setw(6) << barang[i].satuan
+             << "|    " << setw(6) << barang[i].harga << "|    " << endl;
     }
     cout << "|===========================================|" << endl;
 }
@@ -50,7 +45,7 @@ void tambahDataBarang() {
     cout << "Masukkan Harga Barang: ";
     while (!(cin >> baru.harga)) {
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Gunakan <limits>
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Input harus berupa angka. Masukkan Harga Barang: ";
     }
     barang.push_back(baru);
@@ -70,7 +65,7 @@ void updateDataBarang() {
             cout << "Masukkan Harga Barang baru: ";
             while (!(cin >> b.harga)) {
                 cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Gunakan <limits>
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Input harus berupa angka. Masukkan Harga Barang baru: ";
             }
             cout << "Barang berhasil diperbarui!" << endl;
@@ -94,6 +89,91 @@ void hapusDataBarang() {
     cout << "Barang tidak ditemukan!" << endl;
 }
 
+void menuAdmin(); // Deklarasi awal
+
+void menuKasir() {
+    int pilihan;
+    vector<pair<Barang, int>> keranjang;
+
+    do {
+        cout << "|===============================|" << endl;
+        cout << "|         -MENU KASIR-          |" << endl;
+        cout << "|===============================|" << endl;
+        cout << "| 1. Lihat Barang               |" << endl;
+        cout << "| 2. Tambah ke Keranjang        |" << endl;
+        cout << "| 3. Checkout                   |" << endl;
+        cout << "| 4. Kembali ke Menu Utama      |" << endl;
+        cout << "|===============================|" << endl;
+        cout << "| Pilihan : ";
+        cin >> pilihan;
+
+        switch (pilihan) {
+        case 1:
+            tampilDataBarang();
+            break;
+        case 2: {
+            string kode;
+            int jumlah;
+            cout << "Masukkan Kode Barang: ";
+            cin >> kode;
+            cout << "Masukkan Jumlah: ";
+            while (!(cin >> jumlah)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Input harus berupa angka. Masukkan Jumlah: ";
+            }
+
+            bool ditemukan = false;
+            for (const auto &b : barang) {
+                if (b.kode == kode) {
+                    keranjang.push_back({b, jumlah});
+                    cout << "Barang berhasil ditambahkan ke keranjang!" << endl;
+                    ditemukan = true;
+                    break;
+                }
+            }
+            if (!ditemukan) {
+                cout << "Barang tidak ditemukan!" << endl;
+            }
+            break;
+        }
+        case 3: {
+            int total = 0;
+            cout << "\n|===========================================|" << endl;
+            cout << "| Nama Barang   | Jumlah | Harga  | Subtotal |" << endl;
+            cout << "|===========================================|" << endl;
+            for (const auto &item : keranjang) {
+                int subtotal = item.first.harga * item.second;
+                total += subtotal;
+                cout << "| " << setw(12) << item.first.nama
+                     << " | " << setw(6) << item.second
+                     << " | " << setw(6) << item.first.harga
+                     << " | " << setw(8) << subtotal << " |" << endl;
+            }
+            cout << "|===========================================|" << endl;
+            cout << "Total: " << total << endl;
+
+            int bayar;
+            cout << "Masukkan jumlah bayar: ";
+            while (!(cin >> bayar) || bayar < total) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Jumlah bayar tidak mencukupi. Masukkan lagi: ";
+            }
+
+            cout << "Kembalian: " << bayar - total << endl;
+            keranjang.clear();
+            break;
+        }
+        case 4:
+            cout << "Kembali ke menu utama..." << endl;
+            return;
+        default:
+            cout << "Pilihan tidak valid!" << endl;
+        }
+    } while (pilihan != 4);
+}
+
 void menuAdmin() {
     int pilihan;
     do {
@@ -104,7 +184,8 @@ void menuAdmin() {
         cout << "| 2. Tambah Barang              |" << endl;
         cout << "| 3. Edit Barang                |" << endl;
         cout << "| 4. Hapus Barang               |" << endl;
-        cout << "| 5. Logout                     |" << endl;
+        cout << "| 5. Menu Kasir                 |" << endl;
+        cout << "| 6. Logout                     |" << endl;
         cout << "|===============================|" << endl;
         cout << "| Pilihan : ";
         cin >> pilihan;
@@ -123,19 +204,37 @@ void menuAdmin() {
             hapusDataBarang();
             break;
         case 5:
-            cout << "Logout berhasil!" << endl;
+            menuKasir();
             break;
+        case 6:
+            cout << "Logout berhasil!" << endl;
+            return;
         default:
             cout << "Pilihan tidak valid!" << endl;
         }
-    } while (pilihan != 5);
+    } while (pilihan != 6);
 }
 
 void login() {
     string username, password;
-    cout << "Masukkan Username: ";
+    system("cls"); // membersihkan layar ketika output berjalan.
+    cout << "|===============================|" << endl;
+    cout << "|             -LOGIN-           |" << endl;
+    cout << "|           -Interface-         |" << endl;
+    cout << "|                               |" << endl;
+    cout << "|      TOKO KELONTONG CANGGIH   |" << endl;
+    cout << "|           KELOMPOK 3          |" << endl;
+    cout << "|                               |" << endl;
+    cout << "|           KELOMPOK 3 :        |" << endl;
+    cout << "|         Amrullah Azzaky       |" << endl;
+    cout << "|           Zulfa Riana         |" << endl;
+    cout << "|        Defina Rahmayanti      |" << endl;
+    cout << "|      Farida Agil Rahmadani    |" << endl;
+    cout << "|      Mohamad Farrel Pratama   |" << endl;
+    cout << "|===============================|" << endl;
+    cout << "| Username : ";
     cin >> username;
-    cout << "Masukkan Password: ";
+    cout << "| Password : ";
     cin >> password;
     if (username == "admin" && password == "admin") {
         menuAdmin();
